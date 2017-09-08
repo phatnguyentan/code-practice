@@ -1,15 +1,15 @@
 #!/bin/python3
 
 import sys
-from random import randint
 
-n = 2
+
+n = int(input().strip())
 unsorted = []
 unsorted_i = 0
 for unsorted_i in range(n):
-   unsorted_t = str(randint(100, 90000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000))
+   unsorted_t = str(input().strip())
    unsorted.append(unsorted_t)
-
+# your code goes here
 def quick_sort_string(a):
     if len(a) > 1:
         left = []
@@ -29,5 +29,6 @@ def quick_sort_string(a):
             return [a[0]]
         return []
 unsorted = quick_sort_string(unsorted)
+
 for v in unsorted:
     print(v)
