@@ -7,16 +7,15 @@ def pairs(a,k):
     for x in a:
         if x in dict:
             count += dict[x]
-            dict[x] = 1
+            dict[x] = 0
+        if x + k in dict:
+            dict[x + k] += 1
         else:
-            if x + k in dict:
-                dict[x + k] += 1
-            else:
-                dict[x + k] = 1
-            if x - k in dict:
-                dict[x - k] += 1
-            else:
-                dict[x - k] = 1
+            dict[x + k] = 1
+        if x - k in dict:
+            dict[x - k] += 1
+        else:
+            dict[x - k] = 1
     return count
 # Tail starts here
 if __name__ == '__main__':
