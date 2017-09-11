@@ -1,6 +1,6 @@
 # sort
 def quick_sort(arr):
-    if arr and len(arr) > 1:
+    if len(arr) > 1:
         left = []
         right = []
         frist = arr[0]
@@ -11,7 +11,7 @@ def quick_sort(arr):
                 right = right + [arr[i]]
         return quick_sort(left) + [frist] + quick_sort(right)
     else:
-        if not arr:
+        if len(arr) == 0:
             return []
         else:
             return [arr[0]]
