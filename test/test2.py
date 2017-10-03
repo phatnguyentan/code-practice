@@ -2,23 +2,23 @@
 
 import sys
 
-def super_reduced_string(s):
-    # Complete this function
-    i = 0
-    while i < len(s) - 1:
-        if s[i] == s[i + 1]:
-            s = s[:i] + s[i+2:]
-            i = 0
-        else:
-            i += 1
-    if len(s) == 0:
-        s = "Empty String"
-    return s
+# print("pangram") if len(set([i.lower() for i in input().strip()]) & set("abcdefghijklmnopqrstuvwxyz")) == 26  else print("not pangram")
+ #
+ # if (len(set([i.lower() for i in "We promptly judged antique ivory buckles for the next prize"]) & set("abcdefghijklmnopqrstuvwxyz")) == 26):
+ #     return true
+ # else:
+ #     return false
 
-# s = "aaabccddd"
-# s = "bb"
-# s = "baab"
-s = "acdqglrfkqyuqfjkxyqvnrtysfrzrmzlygfveulqfpdbhlqdqrrqdqlhbdpfqluevfgylzmrzrfsytrnvqyxkjfquyqkfrlacdqj"
-# acdqgacdqj
-result = super_reduced_string(s)
-print(result)
+
+s = input()
+exists = set()
+
+for char in s:
+    exists.add(char.lower())
+
+for i in range(ord('a'), ord('z') + 1):
+    if not chr(i) in exists:
+        print("not pangram")
+        break
+else:
+    print("pangram")
