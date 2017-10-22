@@ -1,34 +1,59 @@
-#!/bin/python3
+import os
+import json
+from collections import OrderedDict
 
-import sys
+import requests
 
-def buildMap(s):
-    the_map = {}
-    for char in s:
-        if char not in the_map:
-            the_map[char] = 1
-        else:
-            the_map[char] += 1
+import glean
 
-    return the_map
+root = "Topics"
+root_html = "#HTML"
+
+with open("JSON/DS.json") as inp:
+    ds = json.load(inp, object_pairs_hook=OrderedDict)
 
 
-def anagram(s):
-    if len(s)%2 == 1:
-        return -1
+def mkdir(folder):
+    # print(folder)
+    if not os.path.isdir(folder):
+        os.mkdir(folder)
 
-    mid = len(s)//2
-    s1 = s[:mid]
-    s2 = s[mid:]
 
-    map1 = buildMap(s1)
-    map2 = buildMap(s2)
+def download(urls, folder):
+    mkdir(folder)
+    cleaned_html = []
 
-    diff_cnt = 0
-    for key in map2.keys():
-        if key not in map1:
-            diff_cnt += map2[key]
-        else:
-            diff_cnt += max(0, map2[key]-map1[key])
+    for url in urls:
+        file = os.path.join(folder, url.split('/')[-2]+".html")
 
-    return diff_cnt
+        if os.path.isfile(file):
+            with open(file) as inp:
+                cleaned_html.append(inp.read())
+            continue
+
+        print(file)
+        r = requests.get(url)
+        cleaned_html.append(glean.clean(r.content))
+
+        with open(file, 'wb') as out:
+            out.write(glean.clean(r.content))
+
+    cleaned_file = os.path.join(root_html, folder.split('/')[-1]+".html")
+    with open(cleaned_file, 'wb') as out:
+        out.write("\n".join(cleaned_html))
+
+# Only download these topics
+some_topics = [
+    'Graphs',
+    'Binary Trees',
+]
+
+# for topic in ds.keys():
+for topic in some_topics:
+    if topic in ['Advanced Data Structures']:
+        urls = []
+        for sub_topic in ds[topic]:
+            urls += ds[topic][sub_topic].values()
+        download(urls, os.path.join(root, topic))
+    else:
+        download(ds[topic].values(), os.path.join(root, topic))
