@@ -19,8 +19,11 @@ def transmitter(a, k):
         l = m
         r = m
         count+=1
+<<<<<<< 5bc5072bd88b155488620c52f5cf8459d105dfa8
 
 
+=======
+>>>>>>> radio-transmitter
     return count
 
 a = [7,2,4,6,5,9,12,11]
