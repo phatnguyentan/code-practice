@@ -37,11 +37,22 @@ class LinkedList:
 
         self.head = prev
 
+    def isLoop(self):
+        node = self.head.next
+        prev = self.head
+        while(node):
+            if node.data <= prev.data:
+                return True
+            prev = node
+            node = node.next
+        return False
 
 l = LinkedList()
 l.head = Node(1)
 l.head.next = Node(2)
 l.head.next.next = Node(3)
 l.head.next.next.next = Node(4)
-l.reverse()
-l.list()
+# l.head.next.next.next.next = l.head.next
+# l.reverse()
+print(l.isLoop())
+# l.list()
