@@ -47,24 +47,6 @@ class LinkedList:
             node = node.next
         return False
 
-    def merge(self, list):
-        node1 = self.head
-        node2 = list.head
-        l = LinkedList()
-        l.head = Node()
-
-        while node1 and node2:
-            if node1.data > node2.data:
-                n = node2.next
-                self.move(node2, l.head)
-                node2 = n
-            else:
-                n = node1.next
-                self.move(node1, l.head)
-                node1 = n
-
-        return l
-
     def move(self, src, new):
         # new = src
         # src = new.next
@@ -72,6 +54,27 @@ class LinkedList:
         # des = new
         src.next = new
         new.next = src
+
+def merge_lists(head1, head2):
+    if head1 is None:
+        return head2
+    if head2 is None:
+        return head1
+
+    s = t = Node()
+    while not (head1 is None or head2 is None):
+        if head1.data < head2.data:
+            c = head1
+            head1 = head1.next
+        else:
+            c = head2
+            head2 = head2.next
+
+        t.next = c
+        t = t.next
+
+    t.next = head1 or head2
+    return s.next
 
 l = LinkedList()
 l.head = Node(1)
@@ -83,10 +86,11 @@ l2.head = Node(2)
 l2.head.next = Node(4)
 l2.head.next.next = Node(5)
 l2.head.next.next.next = Node(7)
-l3 = l.merge(l2)
-print(l3.head.data)
-print(l3.head.next.data)
-print(l3.head.next.next.data)
+head = merge_lists(l.head, l2.head)
+l3 = LinkedList()
+l3.head = head
+l3.list()
+
 # l.head.next.next.next.next = l.head.next
 # l.reverse()
 # print(l.isLoop())
