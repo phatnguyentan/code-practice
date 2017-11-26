@@ -1,16 +1,4 @@
-from linkedlist.linkedlist import *
+from backtrack.saleman_travel import *
 
-l = LinkedList()
-l.insertTail(Node(1))
-l.insertTail(Node(2))
-l.insertTail(Node(3))
-l.head.next.next = l.head
-l.list()
-
-# l2 = LinkedList()
-# l2.insertTail(Node(1))
-# l2.insertTail(Node(4))
-# l2.insertTail(Node(6))
-#
-# l3 = LinkedList()
-# l3.head = mergeList(l.head, l2.head)
+arr = [[0,1,3], [0,2,2], [0,3,1], [1,2,1], [1,3,2], [2,3,4]]
+salemanTravel(4, 6, arr)
