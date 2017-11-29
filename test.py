@@ -1,4 +1,5 @@
-from backtrack.saleman_travel import *
+from dynamic.dynamic1.long_sub import *
 
-arr = [[0,1,3], [0,2,2], [0,3,1], [1,2,1], [1,3,2], [2,3,4]]
-salemanTravel(4, 6, arr)
+arr = [5, 2, 3, 4, 9, 10, 5, 6, 7, 8]
+
+print(longSub(arr))
