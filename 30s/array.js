@@ -1,14 +1,4 @@
 {
-  // const chunk = (arr, num) => {
-  //   let tmp = [];
-  //   let newArr;
-  //   while(arr.length > 0) {
-  //     newArr = arr.slice(0, num);
-  //     arr = arr.slice(num, arr.length)
-  //     tmp.push(newArr);
-  //   }
-  //   return tmp;
-  // }
   const chunk = (arr, size) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
     arr.slice(i * size, i * size + size)
@@ -31,4 +21,19 @@
 {
   const countOccurrences = (arr, v) => arr.reduce((acc, value) => value == v ? acc + 1 : acc, 0)
   // console.log(countOccurrences([1, 1, 2, 1, 2, 3], 1)); // 3
+}
+
+{
+  const deepFlatten = (arr) => [].concat(...arr.map(a => Array.isArray(a)? deepFlatten(a) : a));
+  // console.log(deepFlatten([1, [2], [[3], 4], 5])); // [1,2,3,4,5]
+}
+
+{
+  const difference = (a,b) => {s = new Set(b); return a.filter(i => !s.has(i))};
+  // console.log(difference([1, 2, 3], [1, 2, 4])); // [3]
+}
+
+{
+  const differenceBy = (a, b, func) => {s = new Set(b.map(v => func(v))); return a.filter(i => !s.has(func(i)))}
+  // console.log(differenceBy([{ x: 2 }, { x: 1 }], [{ x: 1 }], v => v.x)); // [ { x: 2 } ]
 }

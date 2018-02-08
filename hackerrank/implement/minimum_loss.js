@@ -10,9 +10,10 @@ function solve(price){
     // Complete this function
     let best = price[0] || 999;
     price.forEach((p1, i1) => price.slice(i1+1).forEach((p2, i2) => {
-      const x = p1 - p2;
-      if (0 < x && x < best) {
-        best = x;
+      if (p1 > p2) {
+        const x = p1 - p2;
+        if (x < best) best = x;
+        if (best == 1) return;
       }
     }));
     return best;
