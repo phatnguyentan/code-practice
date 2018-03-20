@@ -30,13 +30,11 @@
 //     return result[n];
 // }
 
-let numbers = [1,3, 5];
+let numbers = [1, 3, 5];
 let result = [];
 function state(n) {
-  if (n < 0) return 0;
-  if (n == 1) return 1;
-  if (result[n]) return result[n];
-  result[n] = numbers.reduce((acc, curr, i) => acc + state(n - curr), 0)
-  return result[n];
+  if(n < 0) return 0;
+  if(n == 1) return 1;
+  return numbers.reduce((acc, curr) => acc + state(n - curr), 0);
 }
 console.log(state(7));
