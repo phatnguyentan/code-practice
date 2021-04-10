@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Compile Program",
+            "program": "${workspaceFolder}/frontend/rxjs/operators/combineAll.ts",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type":"node",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "/usr/local/bin/tsc"
+        },
+        {
+            "name": "Launch Run Program",
+            "program": "${workspaceFolder}/frontend/rxjs/operators/combineAll.js",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node",
+            "runtimeExecutable": "/Users/phatnguyen/.nvm/versions/node/v12.14.0/bin/node"
+        }
+    ]
+}
